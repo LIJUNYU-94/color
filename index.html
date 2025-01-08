@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>色認識</title>
+  </head>
+  <body>
+    <h3>色認識トライ</h3>
+    <div class="flex-row">
+      <div class="camera">
+        <video id="video"></video>
+        <div id="shoot">撮影</div>
+      </div>
+      <img id="photo" />
+    </div>
+    <div class="colorshow">
+      <div id="outputred"></div>
+      <div id="outputgreen"></div>
+      <div id="outputyellow"></div>
+      <div id="outputpurple"></div>
+      <div id="outputblue"></div>
+    </div>
+    <div class="datashow"></div>
+    <canvas id="colorChart" width="400" height="400"></canvas>
+    <p class="closeshow"></p>
+    <canvas id="closechart" width="400" height="400"></canvas>
+    <canvas id="supchart" width="400" height="400"></canvas>
+  </body>
+</html>

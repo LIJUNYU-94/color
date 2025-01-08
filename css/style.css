@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+body {
+  text-align: center;
+}
+p {
+  text-align: left;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+
+#video {
+  border: 1px solid black;
+  width: 320px;
+  height: 240px;
+}
+
+#photo {
+  border: 1px solid black;
+  width: 320px;
+  height: 240px;
+}
+#colorChart {
+  width: 400px;
+  height: 400px;
+}
+#shoot {
+  width: 100px;
+  margin: 5px auto;
+  border: solid 1px skyblue;
+  border-radius: 30px;
+  background-color: skyblue;
+}
+
+#shoot:hover {
+  opacity: 0.7;
+}
+
+@media (width <=1000px) {
+  .flex-row {
+    display: block;
+  }
+}

@@ -1,0 +1,76 @@
+認識
+
+チャート図
+
+表示
+
+おすすめ
+
+jsonの仮データ
+
+
+
+ロジック整理：
+
+ようこそ
+
+起動：環境色検知中。　　環境探知おっけ
+scan:　ものが探知されました。色情報取得中　　　　　　割合ではないかなー
+1回終わり：全表面を取得するためにレゴを回してください！
+5秒まだ：続いて回してください！
+全表面獲得：全表面情報が取得されました、今分析してますので少々お待ちください。
+結果出す：今立ち上がった栄養成分は「」　チャート図生成
+結果出す：これに一番近い食べ物は：「」　　もの情報
+結果出す：これに一番似合うものは：「」　　もの情報
+ボタン：次に行きましょう！　
+
+仮データ
+protein 1
+fat 1
+carbs  *10
+caloris /10
+iron *20
+
+pieのやつはここに置いときます
+function updateChart(data) {
+  const ctx = document.getElementById("colorChart").getContext("2d");
+
+  if (colorChart) {
+    // 既存チャートを更新
+    colorChart.data.datasets[0].data = data;
+    colorChart.update();
+  } else {
+    // 新しいチャートを作成
+    colorChart = new Chart(ctx, {
+      type: "pie", // チャートの種類（例: 'bar', 'pie', 'line'）
+      data: {
+        labels: ["たんぱく質", "脂質", "炭水化物", "カロリー", "鉄分"], // ラベル
+        datasets: [
+          {
+            label: "今取得したものの割合",
+            data: data, // 各データ（割合）
+            backgroundColor: [
+              "#FF0000",
+              "#FFFF00",
+              "#00FF00",
+              "#0000FF",
+              "#800080",
+            ], // 色
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "今取得した栄養割合は:",
+          },
+        },
+      },
+    });
+  }
+}

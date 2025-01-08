@@ -1,0 +1,252 @@
+[
+  {
+    "food": "鶏胸肉",
+    "image": "food1.png",
+    "nutrition": {
+      "protein": [31, 43.6],
+      "fat": [3.6, 5.06],
+      "carbohydrates": [0, 0.0],
+      "calories": [16.5, 23.21],
+      "iron": [20, 28.13]
+    },
+    "description": "鶏胸肉は高たんぱくで低脂質の食材として、健康志向の方や筋肉を増やしたい方におすすめです。消化も良いため、運動後や軽い食事に最適です。",
+    "recommended_time": "運動後やダイエット中に。",
+    "pairing": {
+      "food": "ブロッコリー",
+      "image": "sup1.png",
+      "nutrition": {
+        "protein": [2.8, 3.09],
+        "fat": [0.4, 0.44],
+        "carbohydrates": [70, 77.18],
+        "calories": [3.5, 3.86],
+        "iron": [14.0, 15.44]
+      },
+      "reason": "ブロッコリーはビタミンCや食物繊維が豊富で、鶏胸肉の高たんぱくの吸収を助ける働きがあります。また、味のバランスも抜群です。"
+    }
+  },
+  {
+    "food": "サーモン",
+    "image": "food2.png",
+    "nutrition": {
+      "protein": [25, 33.51],
+      "fat": [13, 17.43],
+      "carbohydrates": [0, 0.0],
+      "calories": [20.6, 27.61],
+      "iron": [16.0, 21.45]
+    },
+    "description": "サーモンはオメガ3脂肪酸が豊富で、心臓の健康や肌の健康をサポートします。風味が良く、満足感のある食材です。",
+    "recommended_time": "肌荒れが気になるときや疲労回復をしたいときに。",
+    "pairing": {
+      "food": "アスパラガス",
+      "image": "sup2.png",
+      "nutrition": {
+        "protein": [2.2, 3.47],
+        "fat": [0.2, 0.32],
+        "carbohydrates": [39.0, 61.51],
+        "calories": [2.0, 3.15],
+        "iron": [20, 31.55]
+      },
+      "reason": "アスパラガスはカリウムが豊富で、サーモンの塩味を引き立てながら、むくみ防止にも効果的です。"
+    }
+  },
+  {
+    "food": "卵",
+    "image": "food3.png",
+    "nutrition": {
+      "protein": [6.3, 14.86],
+      "fat": [5.3, 12.5],
+      "carbohydrates": [6.0, 14.15],
+      "calories": [6.8, 16.04],
+      "iron": [18.0, 42.45]
+    },
+    "description": "卵は完全栄養食と言われ、ビタミンやミネラル、良質なタンパク質を含みます。簡単に調理できる便利な食材です。",
+    "recommended_time": "朝食や手軽にエネルギーを補給したいときに。",
+    "pairing": {
+      "food": "ほうれん草",
+      "image": "sup3.png",
+      "nutrition": {
+        "protein": [2.9, 3.03],
+        "fat": [0.4, 0.42],
+        "carbohydrates": [36.0, 37.66],
+        "calories": [2.3, 2.41],
+        "iron": [54.0, 56.49]
+      },
+      "reason": "ほうれん草の鉄分やビタミンCが卵の栄養吸収をさらに高め、バランスの良い食事になります。"
+    }
+  },
+  {
+    "food": "牛ひき肉",
+    "image": "food4.png",
+    "nutrition": {
+      "protein": [26, 21.49],
+      "fat": [20, 16.53],
+      "carbohydrates": [0, 0.0],
+      "calories": [25.0, 20.66],
+      "iron": [50.0, 41.32]
+    },
+    "description": "牛ひき肉は濃厚な味わいで、エネルギーをしっかり補給できる食材です。アレンジがしやすく、様々な料理に使えます。",
+    "recommended_time": "スタミナをつけたいときやボリュームのある料理が欲しいときに。",
+    "pairing": {
+      "food": "玉ねぎ",
+      "image": "sup4.png",
+      "nutrition": {
+        "protein": [1.1, 1.08],
+        "fat": [0.1, 0.1],
+        "carbohydrates": [93.0, 91.0],
+        "calories": [4.0, 3.91],
+        "iron": [4.0, 3.91]
+      },
+      "reason": "玉ねぎの甘味が牛ひき肉の旨味を引き立て、消化を助ける成分が含まれているため、胃に優しい組み合わせです。"
+    }
+  },
+  {
+    "food": "豚ロース",
+    "image": "food5.png",
+    "nutrition": {
+      "protein": [25, 27.78],
+      "fat": [20, 22.22],
+      "carbohydrates": [0, 0.0],
+      "calories": [27.0, 30.0],
+      "iron": [18.0, 20.0]
+    },
+    "description": "豚ロースはジューシーで風味豊かな部位です。ビタミンB1が豊富で、疲労回復に役立ちます。",
+    "recommended_time": "疲労を感じたときやスタミナをつけたいときに。",
+    "pairing": {
+      "food": "キャベツ",
+      "image": "sup5.png",
+      "nutrition": {
+        "protein": [1.3, 1.81],
+        "fat": [0.1, 0.14],
+        "carbohydrates": [60, 83.45],
+        "calories": [2.5, 3.48],
+        "iron": [8.0, 11.13]
+      },
+      "reason": "キャベツはビタミンCが豊富で、豚ロースの栄養吸収を高めるとともに、消化を助ける効果があります。"
+    }
+  },
+  {
+    "food": "エビ",
+    "image": "food6.png",
+    "nutrition": {
+      "protein": [20, 55.56],
+      "fat": [1.5, 4.17],
+      "carbohydrates": [0, 0.0],
+      "calories": [8.5, 23.61],
+      "iron": [6.0, 16.67]
+    },
+    "description": "エビは低脂肪で高タンパク質の食品であり、ヘルシーな食事に最適です。味わいがあり、様々な料理に使えます。",
+    "recommended_time": "ヘルシーなランチや軽めの夕食に。",
+    "pairing": {
+      "food": "ズッキーニ",
+      "image": "sup6.png",
+      "nutrition": {
+        "protein": [1.2, 2.85],
+        "fat": [0.2, 0.48],
+        "carbohydrates": [31.0, 73.63],
+        "calories": [1.7, 4.04],
+        "iron": [8.0, 19.0]
+      },
+      "reason": "ズッキーニは低カロリーでビタミン豊富、エビの味を引き立てる優れた相性の野菜です。"
+    }
+  },
+  {
+    "food": "豆腐",
+    "image": "food7.png",
+    "nutrition": {
+      "protein": [8, 12.05],
+      "fat": [4.8, 7.23],
+      "carbohydrates": [16.0, 24.1],
+      "calories": [7.6, 11.45],
+      "iron": [30.0, 45.18]
+    },
+    "description": "豆腐は植物性たんぱく質が豊富で、消化も良く、様々な料理に使える万能な食材です。",
+    "recommended_time": "ヘルシーな食事やダイエット中の食事に。",
+    "pairing": {
+      "food": "味噌",
+      "image": "sup7.png",
+      "nutrition": {
+        "protein": [12, 3.55],
+        "fat": [6, 1.78],
+        "carbohydrates": [260, 76.92],
+        "calories": [20.0, 5.92],
+        "iron": [40.0, 11.83]
+      },
+      "reason": "味噌は発酵食品であり、豆腐のたんぱく質と合わせることで栄養バランスが向上します。"
+    }
+  },
+  {
+    "food": "マッシュルーム",
+    "image": "food8.png",
+    "nutrition": {
+      "protein": [3.1, 6.38],
+      "fat": [0.3, 0.62],
+      "carbohydrates": [33.0, 67.9],
+      "calories": [2.2, 4.53],
+      "iron": [10.0, 20.58]
+    },
+    "description": "マッシュルームは低カロリーでビタミンやミネラルが豊富な食材で、旨味成分もたっぷり含まれています。",
+    "recommended_time": "軽食やカロリーを控えたいときに。",
+    "pairing": {
+      "food": "パスタ",
+      "image": "sup8.png",
+      "nutrition": {
+        "protein": [5.5, 1.62],
+        "fat": [1.1, 0.32],
+        "carbohydrates": [300, 88.16],
+        "calories": [15.7, 4.61],
+        "iron": [18.0, 5.29]
+      },
+      "reason": "マッシュルームの旨味がパスタの風味を引き立て、栄養バランスも向上します。"
+    }
+  },
+  {
+    "food": "チーズ",
+    "image": "food9.png",
+    "nutrition": {
+      "protein": [25, 19.97],
+      "fat": [33, 26.36],
+      "carbohydrates": [13.0, 10.38],
+      "calories": [40.2, 32.11],
+      "iron": [14.0, 11.18]
+    },
+    "description": "チーズはカルシウムが豊富で、コクのある味わいが料理をさらに美味しくします。",
+    "recommended_time": "軽い間食やリッチな料理を楽しみたいときに。",
+    "pairing": {
+      "food": "トマト",
+      "image": "sup9.png",
+      "nutrition": {
+        "protein": [0.9, 1.88],
+        "fat": [0.2, 0.42],
+        "carbohydrates": [39.0, 81.42],
+        "calories": [1.8, 3.76],
+        "iron": [6.0, 12.53]
+      },
+      "reason": "トマトの酸味がチーズのコクを引き立て、ビタミンも補給できます。"
+    }
+  },
+  {
+    "food": "鶏もも肉",
+    "image": "food10.png",
+    "nutrition": {
+      "protein": [25, 34.25],
+      "fat": [9, 12.33],
+      "carbohydrates": [0, 0.0],
+      "calories": [19.0, 26.03],
+      "iron": [20, 27.4]
+    },
+    "description": "鶏もも肉はジューシーで濃厚な味わいが特徴で、満足感のある料理に最適です。",
+    "recommended_time": "エネルギーを補給したいときやスタミナをつけたいときに。",
+    "pairing": {
+      "food": "にんにく",
+      "image": "sup10.png",
+      "nutrition": {
+        "protein": [6.4, 1.66],
+        "fat": [0.5, 0.13],
+        "carbohydrates": [330, 85.54],
+        "calories": [14.9, 3.86],
+        "iron": [34.0, 8.81]
+      },
+      "reason": "にんにくは風味が強く、鶏もも肉の味わいを引き立てるだけでなく、体力回復を助けます。"
+    }
+  }
+]
