@@ -14,7 +14,7 @@ const outputgreen = document.querySelector("#outputgreen");
 const closeshow = document.querySelector(".closeshow");
 let autoPhotoInterval = null;
 let colorChart = null; // チャートオブジェクトの参照
-
+let totalCount = 0;
 document
   .querySelector("#shoot")
   .addEventListener("click", toggleAutoPhotoShoot);
@@ -141,6 +141,7 @@ function initPhoto() {
  * 写真の撮影描画
  */
 function photoShoot() {
+  totalCount = 0;
   let drawSize = calcDrawSize();
   canvas.width = drawSize.width;
   canvas.height = drawSize.height;
@@ -149,7 +150,10 @@ function photoShoot() {
   document.querySelector("#photo").src = canvas.toDataURL("image/png");
   processFrame(context);
 }
-//フレームを処理して色認識する
+
+/**
+ *フレームを処理して色認識する
+ */
 function processFrame(x) {
   const imageData = x.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
@@ -159,6 +163,7 @@ function processFrame(x) {
   let greenCount = 0;
   let yellowCount = 0;
   let blueCount = 0;
+
   for (let i = 0; i < data.length; i += 4) {
     const r = data[i]; // 赤
     const g = data[i + 1]; // 緑
@@ -200,11 +205,11 @@ function processFrame(x) {
 
   // 結果を出力
   const totalPixels = canvas.width * canvas.height;
-  const redPercentage = ((redCount / totalPixels) * 100).toFixed(2);
-  const bluePercentage = ((blueCount / totalPixels) * 100).toFixed(2);
-  const purplePercentage = ((purpleCount / totalPixels) * 100).toFixed(2);
-  const yellowPercentage = ((yellowCount / totalPixels) * 100).toFixed(2);
-  const greenPercentage = ((greenCount / totalPixels) * 100).toFixed(2);
+  const redPercentage = ((redCount / totalCount) * 100).toFixed(2);
+  const bluePercentage = ((blueCount / totalCount) * 100).toFixed(2);
+  const purplePercentage = ((purpleCount / totalCount) * 100).toFixed(2);
+  const yellowPercentage = ((yellowCount / totalCount) * 100).toFixed(2);
+  const greenPercentage = ((greenCount / totalCount) * 100).toFixed(2);
   outputred.innerHTML = `Red Percentage: ${redPercentage}%`;
   outputgreen.innerHTML = `green Percentage: ${greenPercentage}%`;
   outputblue.innerHTML = `blue Percentage: ${bluePercentage}%`;
@@ -395,6 +400,7 @@ function rgb2hsv(r, g, b) {
 
   // 戻り値
   if (v > 0.5 && s > 0.5) {
+    totalCount++;
     return { h };
   } else {
     return -1;
