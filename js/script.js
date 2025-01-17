@@ -13,7 +13,8 @@ const outputpurple = document.querySelector("#outputpurple");
 const outputgreen = document.querySelector("#outputgreen");
 const closeshow = document.querySelector(".closeshow");
 let autoPhotoInterval = null;
-let colorChart = null; // チャートオブジェクトの参照
+let colorChart = null; // 取得されたチャートオブジェクトの参照
+let foodChart = null; //foodチャートオブジェクトの参照
 let totalCount = 0;
 document
   .querySelector("#shoot")
@@ -52,6 +53,7 @@ async function fetchData(colors) {
         (acc, value, index) => acc + Math.abs(value - colors[index]),
         0
       );
+      console.log(difference);
       if (difference < smallestDifference) {
         smallestDifference = difference;
         closestFood = index;
@@ -69,7 +71,7 @@ async function fetchData(colors) {
       ${food.food}の栄養成分は：<br>
       - たんぱく質: ${nutrition.protein[0]}g <br>
       - 脂質: ${nutrition.fat[0]}g <br>
-      - 炭水化物: ${nutrition.carbohydrates[0] / 10}g <br>
+      - 炭水化物: ${nutrition.carbohydrates[0]}g <br>
       - カロリー: ${nutrition.calories[0] * 10}kcal <br>
       - 鉄分: ${nutrition.iron[0] / 20}mg <br>
       ${food.food}は：${food.description}<br>
@@ -78,11 +80,12 @@ async function fetchData(colors) {
       ${pairing.food}の栄養成分は：<br>
       - たんぱく質: ${pairing.nutrition.protein[0]}g <br>
       - 脂質: ${pairing.nutrition.fat[0]}g <br>
-      - 炭水化物: ${pairing.nutrition.carbohydrates[0] / 10}g <br>
+      - 炭水化物: ${pairing.nutrition.carbohydrates[0]}g <br>
       - カロリー: ${pairing.nutrition.calories[0] * 10}kcal <br>
       - 鉄分: ${pairing.nutrition.iron[0] / 20}mg <br>
       この二つの物を一緒にいい理由は：${pairing.reason}<br>
     `;
+    updatefoodChart(food);
     return data;
   } catch (error) {
     console.error("JSON読み込みエラー:", error);
@@ -222,100 +225,9 @@ function processFrame(x) {
     bluePercentage,
     purplePercentage,
   ];
-
   updateChart(colors);
   fetchData(colors);
 }
-
-//radarchart
-// function updateChart(data) {
-//   const ctx = document.getElementById("colorChart").getContext("2d");
-
-//   if (colorChart) {
-//     // 既存チャートを更新
-//     colorChart.data.datasets[0].data = data;
-//     colorChart.update();
-//   } else {
-//     console.log(data);
-//     // 新しいチャートを作成
-//     colorChart = new Chart(ctx, {
-//       type: "radar", // チャートの種類（例: 'bar', 'pie', 'line'）
-//       data: {
-//         labels: ["たんぱく質", "脂質", "炭水化物", "カロリー", "鉄分"], // ラベル
-//         datasets: [
-//           {
-//             // label: "今取得したものの割合",
-
-//             data: data, // 各データ（割合）
-//             backgroundColor: "rgba(255, 204, 0, 0.8)",
-//             pointBackgroundColor: "rgba(255, 99, 132, 1)",
-//           },
-//         ],
-//       },
-//       options: {
-//         animation: {
-//           easing: "easeInQuad", // イージング関数を文字列で指定
-//           duration: 1000, // アニメーションの時間（ミリ秒）
-//         },
-//         scales: {
-//           r: {
-//             ticks: {
-//               stepSize: 20,
-//               display: false, // スケールの数値を非表示
-//             },
-//             grid: {
-//               color: "rgba(0, 0, 0, 0.2)", // グリッド線を薄い灰色に
-//             },
-//             angleLines: {
-//               display: true, // 軸線はそのまま表示
-//             },
-//             suggestedMin: -10, // 最小値（スケールの開始値）
-//             suggestedMax: 80, // 最大値（スケールの終了値）
-//           },
-//         },
-//         responsive: false,
-//         plugins: {
-//           legend: {
-//             display: false,
-//           },
-//           title: {
-//             display: true,
-//             text: "今取得した栄養構成は:",
-//           },
-//         },
-//       },
-//       plugins: [
-//         {
-//           id: "customLabels",
-//           afterDatasetDraw(chart) {
-//             const { ctx, scales } = chart;
-//             const dataset = chart.data.datasets[0];
-//             console.log(dataset);
-//             dataset.data.reverse(); // 配列の順番を逆にする
-//             console.log(dataset);
-//             const centerX = chart.chartArea.width / 2 + chart.chartArea.left; // 中心X座標
-//             const centerY = chart.chartArea.height / 2 + chart.chartArea.top; // 中心Y座標
-
-//             dataset.data.forEach((value, index) => {
-//               const angle =
-//                 Math.PI / 2 + (2 * Math.PI * index) / dataset.data.length;
-//               const radius = scales.r.getDistanceFromCenterForValue(value);
-//               const x = centerX + Math.cos(angle) * radius; // 中心からのX位置
-//               const y = centerY - Math.sin(angle) * radius; // 中心からのY位置
-
-//               ctx.save();
-//               ctx.fillStyle = "black"; // 数値の色
-//               ctx.font = "12px Arial"; // フォント設定
-//               ctx.textAlign = "center";
-//               ctx.fillText(value, x, y - 10); // 数値を頂点付近に表示
-//               ctx.restore();
-//             });
-//           },
-//         },
-//       ],
-//     });
-//   }
-// }
 
 function updateChart(data) {
   const ctx = document.getElementById("colorChart").getContext("2d");
@@ -356,6 +268,186 @@ function updateChart(data) {
           },
         },
       },
+    });
+  }
+}
+// radarchart;
+function updatefoodChart(food) {
+  const ctx = document.getElementById("foodChart").getContext("2d");
+  /**
+   * foodとpairingのnutritionの数値を配列化する
+   */
+  const nutrition = food.nutrition;
+  const pairing = food.pairing.nutrition;
+
+  const nutri = [
+    [
+      nutrition.protein[0],
+      nutrition.fat[0],
+      nutrition.carbohydrates[0],
+      nutrition.calories[0],
+      nutrition.iron[0],
+    ],
+    [
+      pairing.protein[0],
+      pairing.fat[0],
+      pairing.carbohydrates[0],
+      pairing.calories[0],
+      pairing.iron[0],
+    ],
+  ];
+  if (foodChart) {
+    // 既存チャートを更新
+    foodChart.data.datasets[0].data = nutri[0];
+    foodChart.data.datasets[1].data = nutri[1];
+    foodChart.data.datasets[0].label = `${food.food}`;
+    foodChart.data.datasets[1].label = `${food.pairing.food}`;
+    foodChart.options.plugins.title.text = `${food.food}と${food.pairing.food}の栄養構成`;
+    foodChart.update();
+  } else {
+    // 新しいチャートを作成
+    foodChart = new Chart(ctx, {
+      type: "radar", // チャートの種類（例: 'bar', 'pie', 'line'）
+      data: {
+        labels: ["たんぱく質", "脂質", "炭水化物", "カロリー", "鉄分"], // ラベル
+        datasets: [
+          {
+            label: `${food.food}`,
+            data: nutri[0], // 各データ(food)(比例修正データ)
+            backgroundColor: "rgba(46, 188, 27, 0.4)",
+            pointBackgroundColor: [
+              "rgba(255, 0, 0, 1)", // 赤
+              "rgba(255, 255, 0, 1)", // 黄色
+              "rgba(0, 255, 0, 1)", // 緑
+              "rgba(0, 0, 255, 1)", // 青
+              "rgba(128, 0, 128, 1)", // 紫
+            ],
+            pointRadius: 4,
+          },
+          {
+            label: `${food.pairing.food}`,
+            data: nutri[1], // 各データ(food)(比例修正データ)
+            backgroundColor: "rgba(215, 170, 24, 0.6)",
+            pointBackgroundColor: [
+              "rgba(255, 0, 0, 1)", // 赤
+              "rgba(255, 255, 0, 1)", // 黄色
+              "rgba(0, 255, 0, 1)", // 緑
+              "rgba(0, 0, 255, 1)", // 青
+              "rgba(128, 0, 128, 1)", // 紫
+            ],
+            pointRadius: 3,
+          },
+        ],
+      },
+      options: {
+        animation: {
+          easing: "easeInQuad", // イージング関数を文字列で指定
+          duration: 1500, // アニメーションの時間（ミリ秒）
+        },
+        scales: {
+          r: {
+            pointLabels: {
+              font: {
+                size: 13, // フォントサイズ（px単位）
+                weight: 800,
+              },
+              color: "#000", // ラベルの色（オプション）
+            },
+            ticks: {
+              stepSize: 20,
+              display: false, // スケールの数値を非表示
+            },
+            grid: {
+              color: "rgba(0, 0, 0, 0.2)", // グリッド線を薄い灰色に
+            },
+            angleLines: {
+              display: true, // 軸線はそのまま表示
+            },
+            suggestedMin: -5, // 最小値（スケールの開始値）
+            // suggestedMax: 55, // 最大値（スケールの終了値）
+          },
+        },
+        responsive: false,
+        plugins: {
+          legend: {
+            display: true,
+          },
+          title: {
+            display: true,
+            text: `${food.food}と${food.pairing.food}の栄養構成`,
+          },
+        },
+        hover: {
+          mode: "nearest", // ホバー時の動作設定
+          animationDuration: 0, // アニメーションを無効にする
+        },
+      },
+      plugins: [
+        {
+          //food
+          id: "customLabels",
+          afterDatasetDraw(chart) {
+            const { ctx, scales } = chart;
+            const data = chart.data.datasets[0].data;
+            const dataset = [
+              `${data[0]}g`,
+              `${data[1]}g`,
+              `${data[2]}g`,
+              `${data[3] * 10}kcal`,
+              `${(data[4] / 20).toFixed(2)}mg`,
+            ];
+            const centerX = chart.chartArea.width / 2 + chart.chartArea.left; // 中心X座標
+            const centerY = chart.chartArea.height / 2 + chart.chartArea.top; // 中心Y座標
+
+            data.forEach((value, index) => {
+              const reversedIndex = index === 0 ? 0 : dataset.length - index;
+              const angle =
+                Math.PI / 2 + (2 * Math.PI * reversedIndex) / dataset.length;
+              const radius = scales.r.getDistanceFromCenterForValue(value);
+              const x = centerX + Math.cos(angle) * radius; // 中心からのX位置
+              const y = centerY - Math.sin(angle) * radius; // 中心からのY位置
+              ctx.save();
+              ctx.fillStyle = "black"; // 数値の色
+              ctx.font = "12px Arial"; // フォント設定
+              ctx.textAlign = "center";
+              ctx.fillText(dataset[index], x, y - 10); // 数値を頂点付近に表示
+              ctx.restore();
+            });
+          },
+        },
+        // {
+        //   //pairing
+        //   id: "customLabels",
+        //   afterDatasetDraw(chart) {
+        //     const { ctx, scales } = chart;
+        //     const data = chart.data.datasets[1].data;
+        //     const dataset = [
+        //       `${data[0]}g`,
+        //       `${data[1]}g`,
+        //       `${data[2]}g`,
+        //       `${data[3] * 10}kcal`,
+        //       `${(data[4] / 20).toFixed(2)}mg`,
+        //     ];
+        //     const centerX = chart.chartArea.width / 2 + chart.chartArea.left; // 中心X座標
+        //     const centerY = chart.chartArea.height / 2 + chart.chartArea.top; // 中心Y座標
+
+        //     data.forEach((value, index) => {
+        //       const reversedIndex = index === 0 ? 0 : dataset.length - index;
+        //       const angle =
+        //         Math.PI / 2 + (2 * Math.PI * reversedIndex) / dataset.length;
+        //       const radius = scales.r.getDistanceFromCenterForValue(value);
+        //       const x = centerX + Math.cos(angle) * radius; // 中心からのX位置
+        //       const y = centerY - Math.sin(angle) * radius; // 中心からのY位置
+        //       ctx.save();
+        //       ctx.fillStyle = "black"; // 数値の色
+        //       ctx.font = "12px Arial"; // フォント設定
+        //       ctx.textAlign = "center";
+        //       ctx.fillText(dataset[index], x, y - 10); // 数値を頂点付近に表示
+        //       ctx.restore();
+        //     });
+        //   },
+        // },
+      ],
     });
   }
 }
